@@ -1,0 +1,74 @@
+﻿@model Projeto.Presentation.Models.UsuarioLoginViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SGA - Entre</title>
+
+    <!--folhas de estilo CSS-->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body class="container">
+   
+    <section class="h-100">
+        <div class="container h-100">
+            <div class="row justify-content-md-center h-100">
+                <div class="card-wrapper">
+                    <div class="card fat">
+                        <div class="card-body">
+                            <h4 class="card-title">Entrar</h4>
+
+                            @using (Html.BeginForm("AutenticarUsuario", "Usuario", FormMethod.Post))
+                            {
+                                <label>Informe seu email:</label>
+                                @Html.TextBoxFor(model => model.Email,
+                               new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Digite aqui"
+                               })
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(model => model.Email)
+                                </span>
+                                <br />
+
+                                <label>Informe sua senha:</label>
+                                @Html.PasswordFor(model => model.Senha,
+                               new
+                               {
+                                   @class = "form-control",
+                                   @placeholder = "Digite aqui"
+                               })
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(model => model.Senha)
+                                </span>
+                                <br />
+
+                                <input type="submit" value="Acessar Sistema"
+                                       class="btn btn-success btn-block"/>
+                                       <br />
+                                       <br />
+
+                                       <strong>@ViewBag.Mensagem</strong>
+                             }
+
+                        </div>
+                    </div>
+                    <div class="footer">
+                        Não possui conta de acesso? <a href="/Usuario/Cadastro">Crie aqui</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!--arquivos javascript-->
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+</body>
+</html>
